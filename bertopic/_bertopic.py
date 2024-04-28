@@ -4200,7 +4200,7 @@ class BERTopic:
             (v, k) for k, v in merged_model.topic_labels_.items()
         )
         if bool(self._outliers):
-            reverse_topic_labels[-1] = "-1"
+            reverse_topic_labels["-1"] = -1
 
         df.Label = df.Label.map(reverse_topic_labels)
         merged_model.topics_ = df.Label.values
