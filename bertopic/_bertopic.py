@@ -3678,7 +3678,7 @@ class BERTopic:
         zeroshot_topics = [self.zeroshot_topic_list[topic] for topic in assigned_documents.Topic.values]
 
         cluster_indices = list(documents.Old_ID.values)
-        cluster_names = list(merged_model.topic_labels_.values())[len(set(y)):]
+        cluster_names = (["Topic -1"] if bool(self._outliers) else []) + list(merged_model.topic_labels_.values())[len(set(y)):]
         cluster_topics = [cluster_names[topic + self._outliers] for topic in documents.Topic.values]
 
         df = pd.DataFrame({
