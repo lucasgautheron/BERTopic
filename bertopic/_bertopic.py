@@ -4174,12 +4174,14 @@ class BERTopic:
 
         # Update topic assignment by finding the documents with the
         # correct updated topics
+        print("Old ID:", set(list(assigned_documents.Old_ID.values)))
         zeroshot_indices = list(assigned_documents.Old_ID.values)
         zeroshot_topics = [
             self.zeroshot_topic_list[topic] for topic in assigned_documents.Topic.values
         ]
 
         cluster_indices = list(documents.Old_ID.values)
+        print("keys:", merged_model.topic_labels_.keys())
         cluster_names = (["Topic -1"] if bool(self._outliers) else []) + list(
             merged_model.topic_labels_.values()
         )[len(set(y)) :]
@@ -4196,7 +4198,7 @@ class BERTopic:
         reverse_topic_labels = dict(
             (v, k) for k, v in merged_model.topic_labels_.items()
         )
-        if bool(self.outliers_):
+        if bool(self._outliers):
             reverse_topic_labels[-1] = "Topic -1"
 
         df.Label = df.Label.map(reverse_topic_labels)
