@@ -4188,7 +4188,7 @@ class BERTopic:
         cluster_topics = [
             cluster_names[topic + self._outliers] if topic != -1
             else "Topic -1"
-             for topic in documents.Topic.values
+            for topic in documents.Topic.values
         ]
 
         df = pd.DataFrame(
