@@ -4174,7 +4174,6 @@ class BERTopic:
 
         # Update topic assignment by finding the documents with the
         # correct updated topics
-        print("Old ID:", set(list(assigned_documents.Old_ID.values)))
         zeroshot_indices = list(assigned_documents.Old_ID.values)
         zeroshot_topics = [
             self.zeroshot_topic_list[topic] for topic in assigned_documents.Topic.values
@@ -4186,8 +4185,8 @@ class BERTopic:
             merged_model.topic_labels_.values()
         )[len(set(y)) :]
         cluster_topics = [
-            cluster_names[topic + self._outliers] if topic != -1
-            else "Topic -1"
+            cluster_names[topic] if topic != -1
+            else "-1"
             for topic in documents.Topic.values
         ]
 
